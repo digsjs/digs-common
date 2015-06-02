@@ -1,7 +1,7 @@
 {
   "name": "digs-common",
   "version": "0.1.0",
-  "description": "A load of common utilities shared by various digs packages",
+  "description": "A load of common utilities shared by various digs-related packages",
   "main": "lib/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
