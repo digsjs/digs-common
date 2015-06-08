@@ -1,6 +1,6 @@
 'use strict';
 
-let _ = require('./lodash-mixins');
+let _ = require('lodash');
 
 class BoardError extends Error {
   constructor(message, board) {
@@ -17,15 +17,15 @@ class InvalidParameterError extends Error {
 
 class ForkError extends BoardError {
   constructor(message, board) {
-    super(_.format('%s: failed to fork after %d attempts: %s', board,
-      board.retryMaxTries, message), board);
+    super(`${board}: failed to fork after ${board.retryMaxTries}
+    attempts: ${message}`, board);
   }
 }
 
 class NotReadyError extends BoardError {
   constructor(message, board) {
-    super(_.format('%s: failed to become ready after max tries reached ' +
-      '(%d): %s', board, board.retryMaxTries, message), board);
+    super(`${board}: failed to become ready after max tries reached
+    (${board.retryMaxTries}): ${message}`, board);
   }
 }
 

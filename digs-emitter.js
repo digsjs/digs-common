@@ -1,11 +1,11 @@
 'use strict';
 
 let events = require('events'),
-  _ = require('./lodash-mixins');
+  _ = require('lodash');
 
 class DigsEmitter extends events.EventEmitter {
   toString() {
-    return _.format('<%s#%s>', this.constructor.name, this.id);
+    return `<${this.constructor.name}#${this.id}>`;
   }
 }
 
