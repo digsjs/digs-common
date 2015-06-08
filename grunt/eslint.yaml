@@ -1,0 +1,6 @@
+main:
+  - digs-emitter.js
+  - digs-util.js
+  - errors.js
+  - index.js
+  - slugify.js

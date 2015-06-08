@@ -1,7 +1,6 @@
 'use strict';
 
-let events = require('events'),
-  _ = require('lodash');
+let events = require('events');
 
 class DigsEmitter extends events.EventEmitter {
   toString() {

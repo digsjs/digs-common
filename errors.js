@@ -1,7 +1,5 @@
 'use strict';
 
-let _ = require('lodash');
-
 class BoardError extends Error {
   constructor(message, board) {
     super(message);
