@@ -6,7 +6,7 @@ let _ = require('lodash'),
   errors = require('./errors');
 
 let InvalidParameterError = errors.InvalidParameterError,
-  debug = require('debug')('digs:common:digs-util');
+  debug = require('debug')('digs-common:digs-util');
 
 let digsUtil = {
   validate: function validate(value, schema) {
