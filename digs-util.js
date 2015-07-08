@@ -82,7 +82,15 @@ let digsUtil = {
       return retval.value;
     }
     ass(arguments[0]);
+  },
+
+  makeError: function makeError(err) {
+    if (_.isError(err)) {
+      return err;
+    }
+    return new Error(err);
   }
+
 };
 
 module.exports = digsUtil;
