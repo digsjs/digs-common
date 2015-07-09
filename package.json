@@ -24,6 +24,6 @@
     "slug": "^0.9.1"
   },
   "devDependencies": {
-    "digs-dev": "^0.2.2-0"
+    "digs-dev": "^0.2.2-3"
   }
 }
