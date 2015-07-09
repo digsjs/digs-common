@@ -17,9 +17,10 @@
   },
   "homepage": "https://github.com/digsjs/digs-common#readme",
   "dependencies": {
+    "bluebird": "^2.9.32",
     "debug": "^2.2.0",
-    "joi": "^6.4.3",
-    "lodash": "^3.9.3",
+    "joi": "^6.5.0",
+    "lodash": "^3.10.0",
     "slug": "^0.9.1"
   },
   "devDependencies": {
