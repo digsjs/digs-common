@@ -1,21 +1,24 @@
 'use strict';
 
-let _ = require('lodash'),
-  Joi = require('joi'),
-  ass = require('assert'), // this is not a political statement.
-  errors = require('./errors');
+let _ = require('lodash');
+let Joi = require('joi');
+let ass = require('assert'); // this is not a political statement.
+let errors = require('./errors');
+let DigsEmitter = require('./digs-emitter');
 
-let InvalidParameterError = errors.InvalidParameterError,
-  debug = require('debug')('digs-common:digs-util');
+let InvalidParameterError = errors.InvalidParameterError;
+let debug = require('debug')('digs-common:digs-util');
 
-let digsUtil = {
-  validate: function validate(value, schema) {
+let DigsUtil = DigsEmitter.create({
+
+  validate(value, schema) {
     if (arguments.length < 2) {
       throw new InvalidParameterError();
     }
     return Joi.validate(value, schema);
   },
-  validateParams: function validateParams(args, schemata) {
+
+  validateParams(args, schemata) {
 
     let retval = {
       errors: null,
@@ -54,20 +57,20 @@ let digsUtil = {
     _.each(args, function (arg, pos) {
       let schema = schemata[pos];
       if (schema) {
-        let desc = Joi.describe(schema),
-          label = desc.label;
+        let desc = Joi.describe(schema);
+        let label = desc.label;
         if (label) {
-          return compile(digsUtil.validate(arg, schema), label);
+          return compile(DigsUtil.validate(arg, schema), label);
         }
-        compile(digsUtil.validate(arg, schema), pos);
+        compile(DigsUtil.validate(arg, schema), pos);
       }
     });
 
     return retval;
   },
 
-  assertParams: function assertParams() {
-    let retval = digsUtil.validateParams.apply(null, arguments);
+  assertParams() {
+    let retval = DigsUtil.validateParams.apply(null, arguments);
     if (retval.errors) {
       let msg = _.toArray(retval.errors).join('\n');
       throw new InvalidParameterError(msg);
@@ -75,22 +78,22 @@ let digsUtil = {
     return retval.values;
   },
 
-  assert: function assert() {
+  assert() {
     if (arguments.length > 1) {
-      let retval = digsUtil.validate.apply(null, arguments);
+      let retval = DigsUtil.validate.apply(null, arguments);
       ass(retval.error === null);
       return retval.value;
     }
     ass(arguments[0]);
   },
 
-  makeError: function makeError(err) {
+  errorize(err) {
     if (_.isError(err)) {
       return err;
     }
     return new Error(err);
   }
 
-};
+});
 
-module.exports = digsUtil;
+module.exports = DigsUtil;
