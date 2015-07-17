@@ -7,7 +7,7 @@ let errors = require('./errors');
 let DigsEmitter = require('./digs-emitter');
 
 let InvalidParameterError = errors.InvalidParameterError;
-let debug = require('debug')('digs-common:digs-util');
+let debug = require('debug')('digs:digs-common:digs-util');
 
 let DigsUtil = DigsEmitter.create({
 
