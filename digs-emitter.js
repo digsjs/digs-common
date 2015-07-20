@@ -3,6 +3,7 @@
 let events = require('events');
 let _ = require('lodash');
 let slugify = require('./slugify');
+let Promise = require('bluebird');
 
 class DigsEmitter extends events.EventEmitter {
 
@@ -15,6 +16,18 @@ class DigsEmitter extends events.EventEmitter {
 
   toString() {
     return `<${this.constructor.name}#${this.id}>`;
+  }
+
+  when(fulfilledEvent, rejectedEvent) {
+    rejectedEvent = rejectedEvent || 'error';
+    debug(`${this}: Waiting for event "${fulfilledEvent}"...`);
+    return new Promise(function(resolve, reject) {
+      this.once(fulfilledEvent, function(data) {
+        this.removeListener(rejectedEvent, reject);
+        resolve(data);
+      })
+        .once(rejectedEvent, reject);
+    }.bind(this));
   }
 
   /**
@@ -39,7 +52,7 @@ function createId(ctx) {
 function createValidatorProxies(ctx) {
   let assertParams = require('./digs-util').assertParams;
 
-  _.each(_.functions(ctx), function (funcName) {
+  _.each(_.functions(ctx), function(funcName) {
     let schemata;
     let func = this[funcName];
     if (_.has(this, funcName) && _.isArray((schemata = func.schemata))) {
