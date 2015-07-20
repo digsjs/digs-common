@@ -4,6 +4,7 @@ let events = require('events');
 let _ = require('lodash');
 let slugify = require('./slugify');
 let Promise = require('bluebird');
+let debug = require('debug')('digs:digs-common:digs-emitter');
 
 class DigsEmitter extends events.EventEmitter {
 
