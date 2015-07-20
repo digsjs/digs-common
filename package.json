@@ -3,7 +3,7 @@
   "version": "0.2.1",
   "description": "A load of common utilities shared by various digs-related packages",
   "scripts": {
-    "prepublish": "digs-dev symlink",
+    "prepublish": "digs-dev install",
     "test": "grunt eslint:main"
   },
   "repository": {
@@ -24,6 +24,6 @@
     "slug": "^0.9.1"
   },
   "devDependencies": {
-    "digs-dev": "^0.2.2-3"
+    "digs-dev": "^0.2.2-6"
   }
 }
