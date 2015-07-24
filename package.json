@@ -1,6 +1,6 @@
 {
   "name": "digs-common",
-  "version": "0.2.2-2",
+  "version": "0.2.2-3",
   "description": "A load of common utilities shared by various digs-related packages",
   "scripts": {
     "prepublish": "digs-dev install",
