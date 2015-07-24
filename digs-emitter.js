@@ -11,8 +11,8 @@ class DigsEmitter extends events.EventEmitter {
   constructor() {
     super();
 
-    createId(this);
-    createValidatorProxies(this);
+    DigsEmitter.createId(this);
+    DigsEmitter.createValidatorProxies(this);
   }
 
   toString() {
@@ -38,33 +38,33 @@ class DigsEmitter extends events.EventEmitter {
    */
   static create(prototype) {
     let obj = _.create(DigsEmitter.prototype, prototype);
-    createId(obj);
-    createValidatorProxies(obj);
+    DigsEmitter.createId(obj);
+    DigsEmitter.createValidatorProxies(obj);
     return obj;
   }
-}
 
-function createId(ctx) {
-  let name = slugify(ctx.constructor.name);
-  ctx.id = ctx.id || _.uniqueId(`${name}-`);
-  return ctx;
-}
+  static createId(ctx) {
+    let name = slugify(ctx.constructor.name);
+    ctx.id = ctx.id || _.uniqueId(`${name}-`);
+    return ctx;
+  }
 
-function createValidatorProxies(ctx) {
-  let assertParams = require('./digs-util').assertParams;
+  static createValidatorProxies(ctx) {
+    let assertParams = require('./digs-util').assertParams;
 
-  _.each(_.functions(ctx), function(funcName) {
-    let schemata;
-    let func = this[funcName];
-    if (_.has(this, funcName) && _.isArray((schemata = func.schemata))) {
-      this[funcName] = function validatorProxy() {
-        assertParams(arguments, schemata);
-        return func.apply(this, arguments);
-      };
-    }
-  }, ctx);
+    _.each(_.functions(ctx), function(funcName) {
+      let schemata;
+      let func = this[funcName];
+      if (_.has(this, funcName) && _.isArray((schemata = func.schemata))) {
+        this[funcName] = function validatorProxy() {
+          assertParams(arguments, schemata);
+          return func.apply(this, arguments);
+        };
+      }
+    }, ctx);
 
-  return ctx;
+    return ctx;
+  }
 }
 
 module.exports = DigsEmitter;
