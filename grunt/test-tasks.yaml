@@ -1,0 +1,28 @@
+---
+watch:
+  options:
+    reload: true
+  files:
+    - lib/**/*.js
+    - test/**/*.js
+    - grunt/**/*.js
+    - grunt/**/*.yaml
+    - Gruntfile.js
+    - index.js
+  tasks:
+    - test
+
+mocha_istanbul:
+  src: test/**/*.spec.js
+  options:
+    coverage: false
+
+eslint:
+  src:
+    - <%= watch.test.files %>
+    - '!**/*.yaml'
+    - '!Gruntfile.js'
+    - '!grunt/testfile.js'
+    - '!grunt/digs-dev.js'
+    - '!test/fixture.js'
+
