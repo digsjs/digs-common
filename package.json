@@ -6,7 +6,7 @@
     "prepublish": "digs-dev install",
     "test": "grunt test"
   },
-  "main": "lib/index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/digsjs/digs-utils.git"
@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/digsjs/digs-utils#readme",
   "dependencies": {
+    "bluebird": "^2.9.34",
     "joi": "^6.5.0",
     "lodash": "^3.10.0",
-    "slug": "^0.9.1"
+    "slug": "^0.9.1",
+    "stampit": "^2.1.0"
   },
   "devDependencies": {
     "chai": "^3.2.0",
