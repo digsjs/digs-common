@@ -19,6 +19,7 @@
   "homepage": "https://github.com/digsjs/digs-common#readme",
   "dependencies": {
     "bluebird": "^2.9.34",
+    "chalk": "^1.1.1",
     "joi": "^6.5.0",
     "lodash": "^3.10.0",
     "slug": "^0.9.1",
@@ -38,6 +39,7 @@
     "grunt-dev-update": "^1.3.0",
     "grunt-eslint": "^17.1.0",
     "grunt-mocha-istanbul": "^3.0.1",
+    "hapi": "^8.8.1",
     "istanbul-harmony": "^0.3.16",
     "jit-grunt": "^0.9.1",
     "load-grunt-config": "^0.17.2",
