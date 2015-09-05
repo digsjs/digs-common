@@ -1,7 +1,7 @@
 {
   "name": "digs-utils",
-  "version": "0.2.2-6",
-  "description": "A load of common utilities shared by various Digs-related packages",
+  "version": "0.2.2-7",
+  "description": "A moatload of common utilities shared by various Digs-related packages",
   "scripts": {
     "prepublish": "digs-dev install",
     "test": "grunt test"
