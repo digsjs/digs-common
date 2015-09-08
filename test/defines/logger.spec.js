@@ -54,22 +54,22 @@ describe('stamps.DigsLogger', function() {
 
     beforeEach(function() {
       dl = DigsLogger({}, digs);
-      sandbox.stub(dl.digs, 'log');
+      sandbox.stub(dl._digs, 'log');
     });
 
     it('should not call digs.log() if no parameters passed', function() {
       dl.log();
-      expect(dl.digs.log).not.to.have.been.called;
+      expect(dl._digs.log).not.to.have.been.called;
     });
 
     it('should call digs.log()', function() {
       dl.log('foo');
-      expect(dl.digs.log).to.have.been.calledOnce;
+      expect(dl._digs.log).to.have.been.calledOnce;
     });
 
     it('should insert default tags', function() {
       dl.log('foo');
-      expect(dl.digs.log).to.have.been.calledWithExactly([
+      expect(dl._digs.log).to.have.been.calledWithExactly([
         dl.namespace,
         dl.project
       ], 'foo');
@@ -77,7 +77,7 @@ describe('stamps.DigsLogger', function() {
 
     it('should append any other tags to the list of tags', function() {
       dl.log('bar', 'foo');
-      expect(dl.digs.log).to.have.been.calledWithExactly([
+      expect(dl._digs.log).to.have.been.calledWithExactly([
         dl.namespace,
         dl.project,
         'foo'
@@ -94,7 +94,7 @@ describe('stamps.DigsLogger', function() {
       ], function(methodName) {
         it(`should add "${methodName}" to the list of tags`, function() {
           dl[methodName]('foo');
-          expect(dl.digs.log).to.have.been.calledWithExactly([
+          expect(dl._digs.log).to.have.been.calledWithExactly([
             dl.namespace,
             dl.project,
             methodName

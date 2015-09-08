@@ -58,7 +58,7 @@ describe('stamps.DigsObject', function() {
     expect(DigsObject({}, digs).project).to.equal(SERVER_CFG.app.project);
   });
 
-  it('should have a digs property', function() {
-    expect(DigsObject({}, digs).digs).to.equal(digs);
+  it('should have a "_digs" property', function() {
+    expect(DigsObject({}, digs)._digs).to.equal(digs);
   });
 });
