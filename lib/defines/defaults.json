@@ -1,0 +1,11 @@
+{
+  "DigsLogger": {
+    "colors": {
+      "debug": "black",
+      "ok": "green",
+      "error": "red",
+      "info": "blue",
+      "warn": "yellow"
+    }
+  }
+}

@@ -6,7 +6,14 @@ module.exports = function wallabyConfig() {
       'lib/**/*.js'
     ],
     tests: [
-      'test/**/*.js'
+      {
+        pattern: 'test/**/*.spec.js',
+        instrument: true
+      },
+      {
+        pattern: 'test/**/suites/*.js',
+        instrument: false
+      }
     ],
     env: {
       type: 'node'

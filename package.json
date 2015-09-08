@@ -6,7 +6,7 @@
     "prepublish": "digs-dev install",
     "test": "grunt test"
   },
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/digsjs/digs-common.git"
