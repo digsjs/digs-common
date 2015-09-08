@@ -25,10 +25,6 @@ function digsObjectSuite(func) {
     expect(DigsObject).to.be.a('function');
   });
 
-  it('should have a static string property "define"', function() {
-    expect(DigsObject.define).to.be.a('string');
-  });
-
   it('should throw if not passed a parameter', function() {
     expect(DigsObject).to.throw(Error);
   });

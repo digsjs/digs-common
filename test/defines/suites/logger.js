@@ -1,6 +1,6 @@
 'use strict';
 
-let digsDefaultsSuite = require('./defaults');
+let digsObjectSuite = require('./object');
 let _ = require('../../../lib').utils;
 
 function digsLoggerSuite(DigsLogger) {
@@ -98,4 +98,4 @@ function digsLoggerSuite(DigsLogger) {
   return DigsLogger;
 }
 
-module.exports = _.flow(digsDefaultsSuite, digsLoggerSuite);
+module.exports = _.flow(digsObjectSuite, digsLoggerSuite);
