@@ -40,11 +40,6 @@ describe('DigsObject', function digsObjectSuite() {
       }).not.to.throw();
     });
 
-  it('should use an EventEmitter', () => {
-    expect(DigsObject({}, digs).on).to.be.a('function');
-    expect(DigsObject({}, digs).emit).to.be.a('function');
-  });
-
   it('should have a "namespace" property', () => {
     expect(DigsObject({}, digs).namespace).to
       .equal(digsMock(sandbox).namespace);
