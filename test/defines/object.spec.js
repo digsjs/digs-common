@@ -1,6 +1,6 @@
 'use strict';
 
-const DigsObject = require('../../lib/defines/object');
+const DigsObject = require('../../lib/definitions/object');
 const digsMock = require('../mocks/digs');
 
 describe('DigsObject', function digsObjectSuite() {

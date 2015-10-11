@@ -1,9 +1,9 @@
 'use strict';
 
 const _ = require('../../lib').utils;
-const DigsObject = require('../../lib/defines/object');
+const DigsObject = require('../../lib/definitions/object');
 const chalk = require('chalk');
-const DigsLogger = require('../../lib/defines/logger');
+const DigsLogger = require('../../lib/definitions/logger');
 
 describe(`DigsLogger`, () => {
   chalk.enabled = false;
