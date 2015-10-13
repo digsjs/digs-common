@@ -1,6 +1,9 @@
 'use strict';
 
-module.exports = function digsMock(sandbox) {
+module.exports = function digsMock(sandbox, types) {
+  if (!types) {
+    types = require('digs-data').types;
+  }
   return {
     namespace: 'digs',
     project: 'home',
@@ -11,6 +14,6 @@ module.exports = function digsMock(sandbox) {
       }
     },
     log: sandbox.stub(),
-    types: require('digs-data').types
+    types: types
   };
 };
