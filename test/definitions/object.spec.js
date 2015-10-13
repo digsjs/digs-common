@@ -3,7 +3,7 @@
 const DigsObject = require('../../lib/definitions/object');
 const digsMock = require('../mocks/digs');
 
-describe('DigsObject', function digsObjectSuite() {
+describe('DigsObject', () => {
   let sandbox;
   let digs;
 
