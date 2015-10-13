@@ -2,6 +2,9 @@
 
 const DigsEmitter = require('../../lib/definitions/emitter');
 
+/**
+ * @test {DigsEmitter}
+ */
 describe(`DigsEmitter`, () => {
   let sandbox;
 
