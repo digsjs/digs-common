@@ -28,16 +28,16 @@ describe('definitions/DigsObject', () => {
     describe(`method`, () => {
       describe(`logMethods()`, () => {
         it(`should throw if not passed a "colors" parameter`, () => {
-          expect(DigsObject.logMethods).to.throw(Error);
+          expect(DigsObject.logMethodsPrototype).to.throw(Error);
         });
 
         it(`should not create functions for colors which chalk does not have`,
           () => {
-            expect(DigsObject.logMethods({debug: 'taupe'})).to.eql({});
+            expect(DigsObject.logMethodsPrototype({debug: 'taupe'})).to.eql({});
           });
 
         it(`should create functions for colors which chalk has`, () => {
-          expect(DigsObject.logMethods({debug: 'blue'}).debug)
+          expect(DigsObject.logMethodsPrototype({debug: 'blue'}).debug)
             .to
             .be
             .a('function');
@@ -81,10 +81,18 @@ describe('definitions/DigsObject', () => {
       expect(DigsObject({}, digs).digs).to.equal(digs);
     });
 
-    it(`should call DigsObject#logMethods`, () => {
-      sandbox.spy(DigsObject, 'logMethods');
+    it(`should call DigsObject.logMethodsPrototype`, () => {
+      sandbox.spy(DigsObject, 'logMethodsPrototype');
       const d = DigsObject({}, digs);
-      expect(DigsObject.logMethods).to.have.been.calledWithExactly(d.logColors);
+      expect(DigsObject.logMethodsPrototype).to.have.been
+        .calledWithExactly(d.logColors);
+    });
+
+    it(`should call DigsObject.hapiMethodsPrototype`, () => {
+      sandbox.spy(DigsObject, 'hapiMethodsPrototype');
+      const d = DigsObject({}, digs);
+      expect(DigsObject.hapiMethodsPrototype).to.have.been
+        .calledWithExactly(d.digs, DigsObject.hapiProxyMethods);
     });
   });
 
@@ -110,6 +118,25 @@ describe('definitions/DigsObject', () => {
             d.project,
             methodName
           ], 'foo');
+        });
+      });
+
+      it(`should have a handful of Hapi proxy methods`, () => {
+        _.each(DigsObject.hapiProxyMethods, (methodName) => {
+          expect(d[methodName]).to.be.a('function');
+        });
+      });
+
+      describe(`Hapi proxy method`, () => {
+        _.each(DigsObject.hapiProxyMethods, (methodName) => {
+          beforeEach(() => {
+            d.digs[methodName] = sandbox.stub();
+          });
+
+          it(`should defer to Hapi.Server.prototype.${methodName}`, () => {
+            d[methodName]();
+            expect(d.digs[methodName]).to.have.been.calledOnce;
+          });
         });
       });
     });
