@@ -5,7 +5,7 @@ const DigsEmitter = require('../../lib/definitions/emitter');
 /**
  * @test {DigsEmitter}
  */
-describe(`DigsEmitter`, () => {
+describe(`definitions/DigsEmitter`, () => {
   let sandbox;
 
   beforeEach(() => {

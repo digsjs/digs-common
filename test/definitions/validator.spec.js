@@ -3,7 +3,7 @@
 const DigsValidator = require('../../lib/definitions/validator');
 const validator = require('../../lib/validator');
 
-describe(`DigsValidator`, () => {
+describe(`definitions/DigsValidator`, () => {
   let sandbox;
 
   beforeEach(() => {
@@ -18,11 +18,15 @@ describe(`DigsValidator`, () => {
     expect(DigsValidator).to.be.a('function');
   });
 
-  it(`should provide static property "validator"`, () => {
-    expect(DigsValidator.validator).to.equal(validator);
+  describe(`static`, () => {
+    describe(`property`, () => {
+      it(`should provide "validator"`, () => {
+        expect(DigsValidator.validator).to.equal(validator);
+      });
+    });
   });
 
-  describe(`methods`, () => {
+  describe(`method`, () => {
     let dv;
 
     beforeEach(() => {

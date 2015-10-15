@@ -3,7 +3,7 @@
 const DigsPrevalidator = require(`../../lib/definitions/prevalidator`);
 const define = require(`../../lib/define`);
 
-describe(`DigsPrevalidator`, () => {
+describe(`definitions/DigsPrevalidator`, () => {
   let sandbox;
 
   beforeEach(() => {
@@ -18,22 +18,24 @@ describe(`DigsPrevalidator`, () => {
     expect(DigsPrevalidator).to.be.a('function');
   });
 
-  describe(`static methods`, () => {
-    describe(`DigsPrevalidator.prevalidate()`, () => {
-      it(`should be a function`, () => {
-        expect(DigsPrevalidator.prevalidate).to.be.a('function');
-      });
-
-      it(`should create a definition which creates an object with a ` +
-        `"prevalidations" property`,
-        () => {
-          expect(DigsPrevalidator.prevalidate()()).to.have
-            .property('prevalidations');
+  describe(`static`, () => {
+    describe(`method`, () => {
+      describe(`prevalidate()`, () => {
+        it(`should be a function`, () => {
+          expect(DigsPrevalidator.prevalidate).to.be.a('function');
         });
+
+        it(`should create a definition which creates an object with a ` +
+          `"prevalidations" property`,
+          () => {
+            expect(DigsPrevalidator.prevalidate()()).to.have
+              .property('prevalidations');
+          });
+      });
     });
   });
 
-  describe(`init`, () => {
+  describe(`init()`, () => {
     it(`should validate the object when a function is called`, () => {
       const validator = DigsPrevalidator.validator;
       const MyDef = define({
