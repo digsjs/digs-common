@@ -31,16 +31,28 @@ describe(`definitions/DigsIdentifier`, () => {
 
   describe(`init()`, () => {
     it(`should generate an id based on defName`, () => {
-      expect(DigsIdentifier().id).to.match(/^DigsIdentifier-\d+/);
+      expect(DigsIdentifier().id).to.match(/^DigsIdentifier#\d+/);
     });
 
     it(`should use default defName if definition has no defName`, () => {
+      const defName = DigsIdentifier.defName;
       DigsIdentifier.defName = '';
-      expect(DigsIdentifier().id).to.match(/^UnknownObject-\d+/);
+      expect(DigsIdentifier().id).to.match(/^UnknownObject#\d+/);
+      DigsIdentifier.defName = defName;
     });
 
     it(`should not generate an id if one is provided`, () => {
       expect(DigsIdentifier({id: 'foo'}).id).to.equal('foo');
+    });
+  });
+
+  describe(`method`, () => {
+    describe(`toString()`, () => {
+      it(`should return a string representation`, () => {
+        expect(`${DigsIdentifier()}`)
+          .to
+          .match(/DigsIdentifier<DigsIdentifier#\d+>/);
+      });
     });
   });
 });
