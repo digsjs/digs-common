@@ -128,10 +128,10 @@ describe(`definitions/DigsFSM`, () => {
     describe(`when setup thru static methods`, () => {
       it(`should create a FSM`, () => {
         const callbacks = {
-          onleavefoo: sandbox.stub().returnsArg(0),
-          onbar: sandbox.stub().returnsArg(0),
-          onenterbaz: sandbox.stub().returnsArg(0),
-          onenteredbaz: sandbox.stub().returnsArg(0)
+          onleavefoo: sandbox.stub().returns(Promise.resolve()),
+          onbar: sandbox.stub().returns(Promise.resolve()),
+          onenterbaz: sandbox.stub().returns(Promise.resolve()),
+          onenteredbaz: sandbox.stub().returns(Promise.resolve())
         };
         const fsm = DigsFSM
           .methods(callbacks)
@@ -153,10 +153,10 @@ describe(`definitions/DigsFSM`, () => {
     describe(`when passed an instance`, () => {
       it(`should create a FSM`, () => {
         const callbacks = {
-          onleavefoo: sandbox.stub().returnsArg(0),
-          onbar: sandbox.stub().returnsArg(0),
-          onenterbaz: sandbox.stub().returnsArg(0),
-          onenteredbaz: sandbox.stub().returnsArg(0)
+          onleavefoo: sandbox.stub().returns(Promise.resolve()),
+          onbar: sandbox.stub().returns(Promise.resolve()),
+          onenterbaz: sandbox.stub().returns(Promise.resolve()),
+          onenteredbaz: sandbox.stub().returns(Promise.resolve())
         };
         const fsm = DigsFSM({
           initial: 'foo',
