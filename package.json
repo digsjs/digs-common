@@ -19,6 +19,7 @@
   "dependencies": {
     "bluebird": "^2.9.34",
     "chalk": "^1.1.1",
+    "fsm-as-promised": "^0.5.0",
     "graceful-fs": "^4.1.2",
     "joi": "^6.5.0",
     "lodash": "^3.10.0",
