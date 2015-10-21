@@ -65,15 +65,23 @@ digs({
 })
   .then((digsServer) => {
     const obj = DigsObject({}, digsServer);
-    obj.info('foo', 'Bar!');
+    obj.info(['foo'], 'Bar!');
     // -> digsServer.log(['digs', 'home', 'info', 'foo'], 'Bar!');
   });
 ```
 
-A `log` method is also available which bypasses the "level":
+Additional tags *must* be specified as an `Array`.  This allows you to simply:
 
 ```js
-obj.log('baz', 'Quux!');
+obj.info('Bar!');
+```
+
+if no extra tags are necessary.
+
+A `log()` method is also available which bypasses the "level":
+
+```js
+obj.log(['baz'], 'Quux!');
 // -> digsServer.log(['digs', 'home', 'baz'], 'Quux!');
 ```
 
