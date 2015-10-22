@@ -37,4 +37,58 @@ describe('utils', () => {
         expect(_.slugify('slugified-am-I')).to.match(/slugified-am-i-\d+/);
       });
   });
+
+  describe(`isSingular()`, () => {
+    it(`should be a function`, () => {
+      expect(_.isSingular).to.be.a('function');
+    });
+
+    it(`should return false on an empty array`, () => {
+      expect(_.isSingular([])).to.be.false;
+    });
+
+    it(`should return false on an empty object`, () => {
+      expect(_.isSingular({})).to.be.false;
+    });
+
+    it(`should return false on an array with more than one member`, () => {
+      expect(_.isSingular([1, 2])).to.be.false;
+    });
+
+    it(`should return false on an object with more than one property`, () => {
+      expect(_.isSingular({foo: 'bar', baz: 'quux'})).to.be.false;
+    });
+
+    it(`should return true on an array with one member`, () => {
+      expect(_.isSingular([1])).to.be.true;
+    });
+
+    it(`should return true on an object with one member`, () => {
+      expect(_.isSingular({foo: 'bar'})).to.be.true;
+    });
+
+    it(`should return false on a two-character string`, () => {
+      expect(_.isSingular('pi')).to.be.false;
+    });
+
+    it(`should return true on a one-character string`, () => {
+      expect(_.isSingular('f')).to.be.true;
+    });
+
+    it(`should return false on any number`, () => {
+      expect(_.isSingular(0)).to.be.false;
+      expect(_.isSingular(1)).to.be.false;
+      expect(_.isSingular(-1)).to.be.false;
+      expect(_.isSingular(2)).to.be.false;
+      expect(_.isSingular(Infinity)).to.be.false;
+    });
+
+    it(`should return false on null`, () => {
+      expect(_.isSingular(null)).to.be.false;
+    });
+
+    it(`should return false on undefined`, () => {
+      expect(_.isSingular()).to.be.false;
+    });
+  });
 });
