@@ -25,8 +25,10 @@
     "joi": "^6.5.0",
     "lodash": "^3.10.0",
     "mkdirp": "^0.5.1",
+    "moment": "^2.10.6",
     "slug": "^0.9.1",
-    "stampit": "^2.1.0"
+    "stampit": "^2.1.0",
+    "stringify-object": "^2.3.0"
   },
   "devDependencies": {
     "chai": "^3.2.0",
