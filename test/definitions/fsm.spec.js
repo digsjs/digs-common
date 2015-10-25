@@ -70,7 +70,7 @@ describe(`definitions/DigsFSM`, () => {
           })).not.to.throw();
         });
 
-        it(`should propagate "events" ref`, () => {
+        it(`should populate "events" ref`, () => {
           const definition = DigsFSM.event({
             name: 'foo',
             from: ['quux'],
@@ -87,23 +87,92 @@ describe(`definitions/DigsFSM`, () => {
           expect(() => DigsFSM.events([1])).to.throw(Error);
         });
 
+        it(`should not throw if passed an array of events`, () => {
+          expect(() => DigsFSM.events([
+            {
+              name: 'foo',
+              from: 'bar',
+              to: 'baz'
+            }
+          ])).not.to.throw();
+        });
+
         it(`should call DigsFSM.event() for each event`, () => {
           sandbox.stub(DigsFSM, 'event').returns(DigsFSM);
-          expect(() => {
-            DigsFSM.events([
-              {
-                name: 'foo',
-                from: 'bar',
-                to: 'baz'
-              }, {
-                name: 'winken',
-                from: 'blinken',
-                to: 'nod'
-              }
-            ]);
-          }).not.to.throw();
+          DigsFSM.events([
+            {
+              name: 'foo',
+              from: 'bar',
+              to: 'baz'
+            }, {
+              name: 'winken',
+              from: 'blinken',
+              to: 'nod'
+            }
+          ]);
           expect(DigsFSM.event).to.have.been.calledTwice;
         });
+      });
+    });
+
+    describe(`callback`, () => {
+      it(`should be a function`, () => {
+        expect(DigsFSM.callback).to.be.a('function');
+      });
+
+      it(`should throw if not passed a function name and function`, () => {
+        expect(DigsFSM.callback).to.throw(Error);
+      });
+
+      it(`should throw if not passed a function name`, () => {
+        expect(() => DigsFSM.callback(() => {
+        })).to.throw(Error);
+      });
+
+      it(`should throw if not passed a function`, () => {
+        expect(() => DigsFSM.callback('foo')).to.throw(Error);
+      });
+
+      it(`should not throw if passed a name and a function`, () => {
+        expect(() => DigsFSM.callback('foo', () => {
+        })).not.to.throw();
+      });
+
+      it(`should call "methods"`, () => {
+        sandbox.spy(DigsFSM, 'methods');
+        DigsFSM.callback('foo', () => {
+        });
+        expect(DigsFSM.methods).to.have.been.calledOnce;
+      });
+
+      it(`should populate "fixed.methods"`, () => {
+        const def = DigsFSM.callback('foo', () => {
+        });
+        expect(def.fixed.methods.foo).to.be.a('function');
+      });
+    });
+
+    describe(`callbacks`, () => {
+      it(`should throw if not passed an object`, () => {
+        expect(DigsFSM.callbacks).to.throw(Error);
+      });
+
+      it(`should not throw if passed an object`, () => {
+        expect(() => DigsFSM.callbacks({
+          foo() {
+          }
+        })).not.to.throw();
+      });
+
+      it(`should call DigsFSM.callback() for each key/value pair`, () => {
+        sandbox.stub(DigsFSM, 'callback').returns(DigsFSM);
+        DigsFSM.callbacks({
+          foo() {
+          },
+          bar() {
+          }
+        });
+        expect(DigsFSM.callback).to.have.been.calledTwice;
       });
     });
   });
@@ -190,4 +259,5 @@ describe(`definitions/DigsFSM`, () => {
       });
     });
   });
-});
+})
+;
