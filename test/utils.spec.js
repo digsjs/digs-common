@@ -1,7 +1,8 @@
 'use strict';
 
+const _ = require('../lib/utils');
+
 describe('utils', () => {
-  const _ = require('../lib/utils');
   let sandbox;
 
   beforeEach(() => {
@@ -56,7 +57,10 @@ describe('utils', () => {
     });
 
     it(`should return false on an object with more than one property`, () => {
-      expect(_.isSingular({foo: 'bar', baz: 'quux'})).to.be.false;
+      expect(_.isSingular({
+        foo: 'bar',
+        baz: 'quux'
+      })).to.be.false;
     });
 
     it(`should return true on an array with one member`, () => {
@@ -110,7 +114,10 @@ describe('utils', () => {
     });
 
     it(`should return true on an object with more than one property`, () => {
-      expect(_.isMultiple({foo: 'bar', baz: 'quux'})).to.be.true;
+      expect(_.isMultiple({
+        foo: 'bar',
+        baz: 'quux'
+      })).to.be.true;
     });
 
     it(`should return false on an array with one member`, () => {
@@ -143,6 +150,16 @@ describe('utils', () => {
 
     it(`should return false on undefined`, () => {
       expect(_.isMultiple()).to.be.false;
+    });
+  });
+
+  describe(`stringify`, () => {
+    it(`should be a function`, () => {
+      expect(_.stringify).to.be.a('function');
+    });
+
+    it(`should provide alias dump()`, () => {
+      expect(_.stringify).to.equal(_.dump);
     });
   });
 });
