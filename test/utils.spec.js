@@ -153,13 +153,46 @@ describe('utils', () => {
     });
   });
 
-  describe(`stringify`, () => {
+  describe(`stringify()`, () => {
     it(`should be a function`, () => {
       expect(_.stringify).to.be.a('function');
     });
 
     it(`should provide alias dump()`, () => {
       expect(_.stringify).to.equal(_.dump);
+    });
+  });
+
+  describe(`throw()`, () => {
+    it(`should be a function`, () => {
+      expect(_.throw).to.be.a('function');
+    });
+
+    it(`should throw`, () => {
+      expect(_.throw).to.throw(Error);
+    });
+
+    it(`should throw with params`, () => {
+      expect(() => _.throw('derp')).to.throw(Error, 'derp');
+    });
+  });
+
+  describe(`noop()`, () => {
+    it(`should be a function`, () => {
+      expect(_.noop).to.be.a('function');
+    });
+
+    it(`should return undefined`, () => {
+      expect(_.noop()).to.be.undefined;
+    });
+
+    it(`should accept no parameters`, () => {
+      expect(_.noop.length).to.equal(0);
+    });
+
+    // XXX: fails in wallaby
+    it(`should do nothing`, () => {
+      expect(String(_.noop).replace(/\s+/g, '')).to.equal('()=>{}');
     });
   });
 });
